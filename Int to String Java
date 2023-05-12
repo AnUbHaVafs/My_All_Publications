@@ -1,0 +1,389 @@
+Article Link (Visit) : Convert Int to String in Java using 08 Methods (with code)
+Author : Anubhav Agrawal
+Website : https://favtutor.com/
+
+
+
+Convert Int to String in Java using 08 Methods (with code)
+ Dec 28, 2022  8 Minutes Read
+Convert Int to String in Java using 08 Methods (with code)
+There are some methods that allow you to convert values from one data type to another. So, in this article, we are going to look at those methods to convert an int to a string in Java. Let's have a pre-requisite first!
+
+What is int?
+The Java int keyword is a primitive data type. It is used to declare variables. It can also be used with methods to return integer-type values. It can hold a 32-bit signed two's complement integer. Its default value is 0 and Its default size is 4 bytes.
+
+What is a string?
+In Java, the string is basically an object that represents a sequence of char values. An array of characters works the same as a Java string. For example:
+
+char[] ch={'F','a','v','t','u','t','o','r'};  
+String s=new String(ch);  
+ 
+
+is the same as:
+
+String s="Favtutor";  
+ 
+
+Why int to string? 
+While solving problems you will encounter many times a need to convert int to string. For example, suppose two numbers are given and you need to append the numbers, though you can achieve it using the numeric values only, but it would become very easy if you just convert them into a string and perform concatenation. Similarly, it will be very useful in other examples too.
+
+08 Methods to convert int to string in Java
+There are 8 different methods available in Java programming to convert integers to string:
+
+Using Integer(int).toString()
+Using valueOf() 
+Using toString()
+Using StringBuffer 
+Using DecimalFormat 
+Using StringBuilder 
+Using special & custom radix
+Using concatenation 
+ 
+
+01) toString() method of Integer class
+Consider a short example code below:
+
+int i=50;
+
+String s=String.valueOf(i); //Now it will return "50"
+ 
+
+Now, let's take a look at the implementation of how the Integer(int).toString() methods work:
+
+// Welcome to favTutor
+// Integer to String Conversion
+// Using toString() Method of Integer Class
+
+// Main class
+class FavTutor {
+
+	public static void main(String args[])
+	{
+		// sample inputs
+		int m = 555;
+		int n = -555;  // If the number is negative, the sign will be preserved. 
+
+		// Converting integer to string
+		// using toString() method
+		String str1 = Integer.toString(m);
+		String str2 = Integer.toString(n);
+
+		// Printing the above strings that
+		// holds integer
+		System.out.println("String str1 = " + str1);
+		System.out.println("String str2 = " + str2);
+	}
+}
+ 
+
+Output :
+
+String str3 = 555
+String str3 = -555
+ 
+
+In this method, we are converting an integer to string and even if the number is negative, that sign will be preserved.
+
+02) valueOf() method of String class
+Consider a short example code below:
+
+int i=100;  
+String s=Integer.toString(i);//Now it will return "100"  
+ 
+
+Now, let's take a look at the implementation of how the valueOf() method of the String class works :
+
+// Welcome to Favtutor
+// Java Program to Convert Integer to String 
+// Using valueOf() Method of String class
+
+// Main class
+class Favtutor {
+
+	// driver method
+	public static void main(String args[])
+	{
+		// Input
+		int f = 1526;
+
+		// Converting above integer to string
+		// using valueOf() Method
+		String str3 = String.valueOf(f);
+
+		// Printing the integer stored in above string
+		System.out.println("String str3 = " + str3);
+	}
+}
+ 
+
+Output:
+
+String str3 = 1256
+ 
+
+In this example, we are using the method called "valueOf()" to convert an integer to a string and store the value in a string-type variable. 
+
+03) Integer(int).toString() method of Integer class
+ Consider a short example code below:
+
+System.out.println("Output: "+Integer.toString(-12));
+//Now it will return "-12"
+ 
+
+Now, let's take a look at the implementation of how the Integer(int).toString() method of Integer class works:
+
+// Welcome to favTutor
+// Java Program to Convert
+// Integer to String 
+// Using Integer(int).toString() 
+
+// Importing required classes
+import java.util.*;
+
+// Main class
+class FavTutor{
+
+	// Main method
+	public static void main(String args[])
+	{
+		// input 
+		int d = 1567;
+
+		// Creating an object of Integer class
+		Integer obj = new Integer(d);
+		String str4 = obj.toString();
+
+		// Printing the above string
+		// holding integer value
+		System.out.println("String str4 = " + str4);
+	}
+}
+ 
+
+Output:
+
+String str3 = 1567
+ 
+
+Here, in this example, we are first creating an instance of the class Integer and then applying the toString() method on the object to achieve the conversion.
+
+04) DecimalFormat Class
+Consider a short example code below:
+
+ double number = 123456789.123;
+      
+      DecimalFormat numberFormat = new DecimalFormat(pattern);
+
+      System.out.println(number);
+      
+      System.out.println(numberFormat.format(number));
+ 
+
+  Now, let's take a look at the implementation of how the DecimalFormat Class works :
+
+// Welcome to favTutor
+// Java Program to Convert Integer to String
+// Using DecimalFormat Class
+
+// Importing required classes
+import java.text.DecimalFormat;
+
+// Main class
+class FavTutor{
+
+    // Main method
+    public static void main(String args[]) {
+        // input
+        int e = 15678;
+
+        // Creating an object of DecimalFormat class
+        // inside main() method
+        DecimalFormat df = new DecimalFormat("#");
+
+        // Formatting the integer to string
+        // and storing it in a string
+        String str5 = df.format(e);
+
+        // Printing the above stored value
+        // inside a string
+        System.out.println(str5);
+    }
+}
+ 
+
+Output:
+
+15678
+ 
+
+Here, in this example, we are first importing the DecimalFormat class and then using its format method to achieve the conversion from an integer to a String. 
+
+05) StringBuffer class
+ Consider a short example code below:
+
+StringBuffer sb=new StringBuffer("Hello ");  
+sb.append("Java");//now original string is changed  
+System.out.println(sb);//prints Hello Java  
+ 
+
+Now, let's take a look at the implementation of how the StringBuffer class works :
+
+// Welcome to favTutor
+// Java Program to Illustrate
+// Integer to String 
+// Using StringBuffer Class
+
+// Main class
+class Favtutor{
+
+    // Main method
+    public static void main(String args[]) {
+        // input
+        int f = 1567;
+
+        // Creating an object of StringBuffer class
+        StringBuffer sb = new StringBuffer();
+        sb.append(f);
+
+        String str6 = sb.toString();
+
+        System.out.println("String str6 = " + str6);
+    }
+}
+ 
+
+Output:
+
+String str6 = 1567
+ 
+
+Here, in this example, we are using the String buffer class and its method called "append"  to achieve the conversion from an integer to a String. 
+
+06) StringBuilder class
+ Consider a short example code below:
+
+StringBuilder sb=new StringBuilder("Hello ");  
+sb.append("Java");//now original string is changed  
+System.out.println(sb);//prints Hello Java  
+ 
+
+Now, let's take a look at the implementation of how the StringBuilder class works:
+
+// Welcome to FavTutor
+// Java Program to Illustrate
+// Integer to String 
+// Using StringBuilder Class
+
+// Main class
+class Favtutor {
+
+    // Main method
+    public static void main(String args[]) {
+        // Input
+        int g = 1567;
+
+        // Creating an object of StringBuilder class
+        // inside main() method
+        StringBuilder sb = new StringBuilder();
+        sb.append(g);
+
+        String str7 = sb.toString();
+
+        // Printing the value
+        System.out.println("String str7 = " + str7);
+    }
+}
+ 
+
+Output: 
+
+String str7 = 1567
+ 
+
+Here, in this example, we are first importing the class called "Stringbuilder" and then applying the append() method to it by passing the given number as a parameter to the append() method. After that, we are applying the toString() method.
+
+07) special radix and custom radix
+Consider a short example code below:
+
+int h = 255;
+ String binaryString = Integer.toBinaryString(h);// Result = 11111111
+ 
+
+Now, let's take a look at the implementation of how the special radix and custom radix class works:
+
+// Welcome to FavTutor
+// Java Program to Illustrate Integer to String Conversions
+// Using Special Radix In Binary Numbers
+
+// Main class
+class FavTutor {
+
+    // Main method
+    public static void main(String args[]) {
+        // Input
+        int h = 255;
+        String binaryString = Integer.toBinaryString(h);
+
+        // Printing
+        System.out.println(binaryString);
+    }
+}
+ 
+
+Output: 
+
+11111111
+ 
+
+Here, in this example, we are using the toBinaryString() method to achieve the same conversion from an integer to a String as shown.
+
+08) Concatenation with an empty string  
+Consider a short example code below:
+
+ int a = 1567;
+ int b = -1567;
+ 
+ // Concatenating with empty strings
+ String str1 = "" + a;
+ String str2 = "" + b;
+ 
+
+Now, let's take a look at the implementation of how the concatenation with an empty string works:
+
+// Welcome to FavTutor
+// Java Program to Illustrate Integer to String Conversions
+// Using Concatenation with Empty String
+
+// Main class
+class FavTutor {
+
+    // Main method
+    public static void main(String args[]) {
+        // integer
+        int a = 1567;
+        int b = -1567;
+
+        // Concatenating with empty strings
+        String str1 = "" + a;
+        String str2 = "" + b;
+
+        // Printing the concatenated strings
+        System.out.println("String str1 = " + str1);
+        System.out.println("String str2 = " + str2);
+    }
+}
+
+ 
+
+Output:
+
+String str1 = 1567
+String str2 = -1567
+ 
+
+Here, we are not using any method for conversion, instead what we are doing is just adding an empty string to the number by placing it before the number. Remember the order in which it is placed.
+
+Conclusion 
+I hope now you know how to convert int to string in Java. Additionally, we can use String.format() method, string concatenation operator, and all other methods discussed above. The real application of this conversion is generally we have to display numbers in the text field because everything is displayed as a string in form. 
+
+Congratulations! If you make it here. Keep Learning!
