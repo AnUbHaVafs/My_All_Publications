@@ -1,0 +1,508 @@
+Article Link (Visit) : https://favtutor.com/blogs/sort-vector-cpp
+Author : Anubhav Agrawal 
+Website : https://favtutor.com/
+
+Sort Vector in C++: Ascending & Descending Order (with code)
+ Jan 14, 2023  7 Minutes Read
+Sort Vector in C++: Ascending & Descending Order (with code)
+Although there are a plethora of sorting algorithms available like Merge Sort, Quick Sort, and Heap Sort to manually perform sorting, C++ provides us a sort() function which can make its execution easier.
+
+In this article, we will learn how to sort a vector in C++ in ascending and descending order with code.
+
+What is Sorting?
+Sorting means arranging elements of an array in a specified order. This can be from lowest to highest (ascending) or highest to lowest (descending). This makes working with this data type in the manner that we want. 
+
+All human data is stored in some form where it can be highly unorganized. Sorting is simply a way to organize it. Every programmer must have an understanding of Sorting and how to perform it in different programming languages.
+
+Sort function in C++
+The Standard Template Library provides us with an in-build sort function. The std:sort() function available in C++ STL allows us to sort the vector in ascending or descending order. It is defined in the algorithms header file. It can also be used to sort any data structure in whatever order is required.
+
+The basic syntax of this function is:
+
+sort(v.begin(), v.end());
+ 
+
+ and the class definition is as follows:
+
+template <class RandomAccessIterator>
+  void sort (RandomAccessIterator first, RandomAccessIterator last);
+    
+template <class RandomAccessIterator, class Compare>    
+  void sort (RandomAccessIterator first, RandomAccessIterator last, Compare comp);
+ 
+
+Here is an example for better understanding.
+
+ Input :
+
+vector<int> v{ 1, 5, 8, 9, 6, 7, 3, 4, 2, 0 };
+  
+sort(v.begin(), v.end());
+ 
+
+Output :
+
+0 1 2 3 4 5 6 7 8 9
+ 
+
+It sorts the elements in the range [first, last) into ascending order. Equivalent elements are not guaranteed to keep their original relative order. To get a stable sort std::stable_sort is used. It is exactly like sort() but maintains the relative order of equal elements.
+
+The sort() function sorts a given data structure and does not return anything. So, it returns:
+
+none
+ 
+
+This sort() function takes two arguments first and last, which define the range of sorting. Also, you can provide which determines the order in which the elements are going to be compared. 
+
+ std::sort have average case linearithmic (n log n) time complexity, where n: length from the first index to the last index.
+
+How to Sort a Vector in C++?
+ There are different ways to sort a vector in C++ we will discuss in detail each of them.
+
+Ascending Order
+Descending Order
+Custom comparison function
+How to sort in a particular order? 
+How to sort the array in descending order based on some parameter using a comparator function?
+Using lambda to sort
+2D Matrix
+sort a specific row
+sort a specific column
+ Let's deep dive into all of them one by one!
+
+1)  Sort Vector in Ascending order
+ Ascending order means arranging the vector from lowest to hight. The basic syntax in C++ to sort vector in ascending order is:
+
+sort(v.begin(), v.end());
+ 
+
+Go through the below example of sorting a vector into ascending order using the above syntax:
+
+// Welcome To Favtutor
+#include<iostream> 
+#include
+#include<algorithm> 
+using namespace std; 
+
+int main() 
+{ 
+vector<int> v{ 12, 56, 33, 2, 10, 5, 7 }; 
+
+sort(v.begin(), v.end()); 
+
+cout << "Sorted vector is \n"; 
+for (int i=0; i<v.size(); i++) 
+    cout << v[i] << " "; 
+
+return 0; 
+} 
+ 
+
+Output:
+
+Sorted vector is
+2 5 7 10 12 33 56
+ 
+
+Note: The sort() also takes a third parameter to change the order of the numbers.
+
+ In the above example, we didn't pass the third argument to the sort() function, so in this case, it will consider it to be the std::less() function. This function returns true or false on the basis of comparing two arguments, whether the first one is less than the other.
+
+ Let's go through one more example to demonstrate the above:
+
+//Welcome to Favtutor
+#include<iostream>    
+#include<vector> 
+#include<algorithm>
+using namespace std;
+int main()
+{  
+	//vector initialisation
+	vector<int> vec {5, 4, 3, 2, 1};
+	
+	cout<<"Before sorting vector : ";
+	for(auto i=vec.begin(); i<vec.end(); i++)
+	{
+		cout<<" "<<*i;
+	}
+	
+	std::sort(vec.begin(),vec.end());//Sorting the vector
+	
+	cout<<"\n\nAfter sorting vector : ";
+	for(auto i=vec.begin(); i<vec.end(); i++)
+	{
+		cout<<" "<<*i;
+	}
+	return 0;
+}
+ Output :
+
+Before sorting vector :  5 4 3 2 1
+
+After sorting vector :  1 2 3 4 5
+ 
+
+2) Descending order
+So, previously the default was less() function, but in this case, we will pass the third parameter greater() to sort a vector in decreasing order. If the first argument is greater than the second one, the function returns true else false.
+
+The basic C++ syntax to sort vector in descending order:
+
+sort(v.begin(), v.end(), greater());
+ 
+
+Go through the below example of sorting a vector into descending order using the above syntax:
+
+//Welcome to Favtutor
+#include<iostream>
+#include<vector>
+#include<algorithms>
+using namespace std;
+int main()
+{  
+	//vector initialisation
+	vector<int> vec { 2,4,6,8,10 };
+	
+	cout<<"Before sorting vector : ";
+	for(auto i=vec.begin(); i<vec.end(); i++)
+	{
+		cout<<" "<<*i;
+	}
+	
+	std::sort(vec.begin(),vec.end(), greater<int>());//Sorting the vector using greater() function
+	
+	cout<<"\n\nAfter sorting vector : ";
+	for(auto i=vec.begin(); i<vec.end(); i++)
+	{
+		cout<<" "<<*i;
+	}
+	return 0;
+}
+ 
+
+Output:
+
+Before sorting vector :  2 4 6 8 10
+
+After sorting vector :  10 8 6 4 2
+ 
+
+ 3) Using lambda to sort
+ Since C++11, the use of lambda expressions was introduced to C++ programming. The lambda expressions are nothing but simple one-line functions, which don't require any declaration and return type. We will define our own lambda expressions and we can pass them as a third argument to the sort() function. 
+
+ Go through the below example of sorting a vector into descending order using lambda expressions:
+
+// Welcome to Favtutor
+#include<iostream>
+#include<vector>
+#include<algorithms>
+using namespace std;
+int main()
+{  
+	//vector initialisation
+	vector<int> vec { 11,22,33,44,55 };
+	
+	cout<<"Before sorting vector : ";
+	for(auto i=vec.begin(); i<vec.end(); i++)
+	{
+		cout<<" "<<*i;
+	}
+	
+	std::sort(vec.begin(),vec.end(), [](int &a, int &b){ return a>b; });
+        //Sorting the vector using user-defined lambda expression(return type bool)
+	
+	cout<<"\n\nAfter sorting vector : ";
+	for(auto i=vec.begin(); i<vec.end(); i++)
+	{
+		cout<<" "<<*i;
+	}
+	return 0;
+}
+ 
+
+Output:
+
+Before sorting vector :  11 22 33 44 55
+
+After sorting vector :  55 44 33 22 11
+ 
+
+ 4) Custom comparison function
+ This comparator function is a user-defined function, where the user can define the way they want to sort the data. Now, we will sort the vector into decreasing order without using the greater() function but rather using our own comparator function.
+
+ The syntax is as follows:
+
+bool cmp(int a, int b)
+{
+    return a>b;
+}
+
+sort(v.begin(), v.end() , cmp);
+ 
+
+Go through the below example of sorting a vector into descending order using a user-defined comparator function:
+
+// Welcome to Favtutor
+#include<iostream>
+#include<algorithms>
+using namespace std; 
+bool cmp(int a, int b)
+{
+    return a>b;
+}
+int main() 
+{ 
+    vector<int> v{ 12, 56, 33, 2, 10, 5, 7 }; 
+    sort(v.begin(), v.end() , cmp); 
+    cout << "Sorted vector is \n"; 
+    for (int i=0; i<v.size(); i++) 
+        cout << v[i] << " "; 
+    return 0; 
+}
+ 
+
+Output:
+
+Sorted vector is
+56 33 12 10 7 5 2
+ 
+
+Note: This cmp becomes extremely useful when one has to compare a vector of pairs or any such combinational data types.
+
+How to sort in a particular order?  Consider the below example, where we defined a vector of pairs using Interval and using our own-defined function compareInterval. 
+
+ Suppose, we have Interval i1 = { 6 , 8 } and Interval i2 = { 1, 9 }. When these are passed to the comparator function, it compares: i1.start (=6) < i2.start (=1), and the comparator function returns false. This means that Interval i1 should not be placed before Interval i2. Below is the code for this function:
+
+// Welcome to Favtutor
+// A C++ program to sort vector using
+// our own comparator
+#include <bits/stdc++.h>
+using namespace std;
+
+// An interval has start time and end time
+struct Interval {
+	int start, end;
+};
+
+// Compares two intervals according to starting times.
+bool compareInterval(Interval i1, Interval i2)
+{
+	return (i1.start < i2.start);
+}
+
+int main()
+{
+	vector<Interval> v { { 6, 8 }, { 1, 9 }, { 2, 4 }, { 4, 7 } };
+
+	// sort the intervals in increasing order of
+	// start time
+	sort(v.begin(), v.end(), compareInterval);
+
+	cout << "Intervals sorted by start time : \n";
+	for (auto x : v)
+		cout << "[" << x.start << ", " << x.end << "] ";
+
+	return 0;
+}
+ 
+
+Output:
+
+Intervals sorted by start time : 
+[1, 9] [2, 4] [4, 7] [6, 8] 
+ 
+
+How to sort the array in descending order based on some parameter using a comparator function? A comparator function can be passed in such a manner so that the elements in the array get sorted in descending order.
+
+ Below is the example shown:
+
+// Welcome to Favtutor
+// A C++ program to sort vector using
+// our own comparator
+#include <bits/stdc++.h>
+using namespace std;
+
+// An interval has start time and end time
+struct Interval {
+	int start, end;
+};
+
+// Compares two intervals according to ending times in descending order.
+bool compareInterval(Interval i1, Interval i2)
+{
+	return (i1.end > i2.end);
+}
+
+int main()
+{
+	vector<Interval> v { { 6, 8 }, { 1, 9 }, { 2, 4 }, { 4, 7 } };
+
+	// sort the intervals in decreasing order of
+	// end time
+	sort(v.begin(), v.end(), compareInterval);
+
+	cout << "Intervals sorted by ending time in descending order : \n";
+	for (auto x : v)
+		cout << "[" << x.start << ", " << x.end << "] ";
+
+	return 0;
+}
+ 
+
+Output:
+
+Intervals sorted by ending time in descending order : 
+[1, 9] [6, 8] [4, 7] [2, 4] 
+ 
+
+5) Sorting a 2D vector
+ A 2D vector is nothing but a vector of vectors means instead of storing data at each index of a vector we will store rather a vector to store the data just like the 2D array. Now, sorting can be done in many parts as follows :
+
+Row-wised sorting
+Column-wised sorting
+size-wised sorting
+First, we will sort row-wised. The syntax will be the same almost and is shown below:
+
+sort(v[row_number].begin(), v[row_number].end()); 
+ 
+
+The following example can help you to understand the above easily:
+
+// Welcome to Favtutor
+#include<iostream>
+#include<vector>
+#include<algorithms>
+using namespace std; 
+
+int main() 
+{ 
+
+vector< vector<int> > v {{4, 2, 9}, 
+                           {-4, 82, 33}, 
+                           {12, 44, 0}}; 
+// Number of rows; 
+int m = v.size(); 
+
+// Number of columns assuming it’s a square matrix
+int n = v[0].size(); 
+
+cout << "The Matrix before sorting 3rd row is:\n"; 
+for (int i=0; i<m; i++) 
+{ 
+    for (int j=0; j<n ;j++) 
+       cout << v[i][j] << " "; 
+    cout << endl; 
+} 
+
+sort(v[2].begin(), v[2].end()); 
+
+cout << "The Matrix after sorting 3rd row is:\n"; 
+for (int i=0; i<m; i++) 
+{ 
+    for (int j=0; j<n ;j++) 
+        cout << v[i][j] << " "; 
+    cout << endl; 
+} 
+
+return 0; 
+}
+ 
+
+ Output:
+
+ The Matrix before sorting 3rd row is:
+
+4 2 9
+-4 82 33 
+12 44 0 
+ 
+
+The Matrix after sorting 3rd row is:
+
+4 2 9
+-4 82 33 
+0 12 44
+ 
+
+Now, we will sort by column. In this case, we will use the comparator function to sort the columns in a 2D vector using the basic syntax:
+
+bool sortByCol( const vector<int>& v1, 
+           const vector<int>& v2 ) { 
+ return v1[column_number] < v2[column_number]; 
+}
+
+sort(v.begin(), v.end(), sortByCol); 
+ 
+
+The following example can help you to understand the above easily:
+
+// Welcome to Favtutor
+#include<iostream>
+#include<vector>
+#include<algorithms>
+using namespace std; 
+  bool sortByCol( const vector<int>& v1, 
+           const vector<int>& v2 ) { 
+ return v1[2] < v2[2]; 
+}
+int main() 
+{ 
+
+vector< vector<int> > v {{4, 2, 9}, 
+                           {-4, 82, 33}, 
+                           {12, 44, 0}}; 
+// Number of rows; 
+int m = v.size(); 
+
+// Number of columns assuming it’s a square matrix
+int n = v[0].size(); 
+
+cout << "The Matrix before sorting 3rd column is:\n"; 
+for (int i=0; i<m; i++) 
+{ 
+    for (int j=0; j<n ;j++) 
+       cout << v[i][j] << " "; 
+    cout << endl; 
+} 
+
+sort(v.begin(), v.end(), sortByCol); 
+
+cout << "The Matrix after sorting 3rd column is:\n"; 
+for (int i=0; i<m; i++) 
+{ 
+    for (int j=0; j<n ;j++) 
+        cout << v[i][j] << " "; 
+    cout << endl; 
+} 
+
+return 0; 
+}
+ 
+
+Output:
+
+The Matrix before sorting 3rd row is:
+4 2 9
+-4 82 33 
+12 44 0 
+
+The Matrix after sorting 3rd row is:
+4 2 0
+-4 82 9 
+12 44  33
+ 
+
+Now, we have looked at each method to perform sort operations on a vector (1D and 2D). So, let's at the end understand which algorithm is basically implemented in the sort() function.
+
+ 
+
+Which Algorithm is used in std:sort() function?
+The sort() function defined in the header file uses the introsort algorithm which is a hybrid algorithm. Why is it so? Because it is a hybrid of quick sort, heap sort, and insertion sort.
+
+So, when the recursion depth exceeds a level based on (the logarithm of) the number of elements being sorted it switches from quicksort() to heapsort() and when the number of elements is below some threshold it switches to insertion sort.
+
+This algorithm takes the good part of all the 3 algorithms and with practical performance comparable to quicksort on typical data sets and worst-case O(nlogn) runtime due to the heap sort. 
+
+Takeaways
+ As a programmer, you will encounter many problems in which you will be dealing with some data manipulations, and in between, you require the data to be sorted in some order, this sort() function can make your job easier. Now you know how to sort vectors in C++ with examples and code.
+
+ Congratulations on getting this far! Now give yourself a pat on the back. Good job!
