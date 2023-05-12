@@ -1,1 +1,217 @@
-https://favtutor.com/blogs/absolute-value-abs-cpp
+Article Link (Visit) : https://favtutor.com/blogs/absolute-value-abs-cpp
+Author : Anubhav Agrawal
+Website : https://favtutor.com/
+
+
+Absolute Value in C++ | abs() function with code
+ Nov 21, 2022  6 Minute Read
+Absolute Value in C++ | abs() function with code
+You must have solved many problems which require you to in between determine the absolute value of a given number. In this article, we will see all the methods which can be used to find the absolute value of a number in C++ and the abs() function in great detail.
+
+Let's begin step by step!
+
+What is Absolute Value?
+An integer consists of magnitude and its sign. The Absolute value of an integer is the magnitude of that integer without regard to its sign. The Absolute value of an integer is ALWAYS positive.
+
+In maths, the absolute value gives the same output as the modulus function. 
+
+abs(num) = |num|
+
+Example : If x = - 10 , then
+
+                abs(x) = abs(-10) = |-10| = 10 
+
+What is cstdlib in C++?
+This is the Standard library header which was originally present in the C standard library as stdlib.h.
+
+This header provides a set of general purpose functions such as atol() to convert string to integer and abs() to find the absolute value of a number.
+
+ 
+
+What is the abs() function in C++?
+abs() function is defined in the header file in C++. It is used to find the absolute value of a given number.
+
+A number data type can be int, long int, or long long int.
+
+If a negative number is passed as an argument, then it will return the positive value with the same magnitude. For example : abs(-10) = 10 .
+If a positive number is passed as an argument, then it will return the same positive number. For example : abs(15) = 15 .
+Syntax of abs() function in C++?
+abs( int num);  OR
+abs(long int num);  OR
+abs(long long int num);  
+ 
+
+Parameters of abs() function
+It takes only one parameter. A parameter can be of 3 data types :
+
+int
+long int 
+long long int
+Types of Return Values of abs()
+Input:  In C, the input passed can be of type int whereas, in C++, the input passed can be of type int, long int, or long long int.
+
+Output: In C, the return value is of type int whereas, in C++, the return value has the same data type as input, which means it could be of type int, long int, or long long int.
+
+ Data type of returned value by abs()  == Data type of the argument passed in abs()
+
+For example, if the argument passed is of int type, then the return will be of int type only.
+
+How does the abs() function work in C++?
+The code below is the implementation of the abs() function in C++ to find the absolute value of a number:
+
+// Using <cstdlib> header
+#include <cstdlib>
+#include 
+
+using namespace std;
+
+int main()
+{
+    int val1, val2;
+
+    // abs() function to find the absolute value of an argument
+    val1 = abs(11);
+    val2 = abs(-65);
+
+    cout << "abs(11) = " << val1 << endl;
+    cout << "abs(-65) = " << val2 << endl;
+    return 0;
+}
+ 
+
+Output:
+
+abs(11) = 11
+abs(-65) = 65
+ 
+Exception of abs() function in C++?
+The abs() function may give undefined behavior if the resulting value of abs() is out of range of its return data type.
+
+For example : 
+
+Input :  INT_MIN = -2147483648 
+
+(Note: We know that the range of int in C++ is from -2147483648 to 2147483647)
+
+Output: abs(-2147483648) =  |-2147483648|, which will result in it being out of range of int and as a result, it will give undefined behavior.
+
+
+Difference between abs() and fabs()?
+abs() function	fabs() function
+ Used for :
+
+integer data type
+ 
+
+ Used for :
+
+int 
+float
+double
+char data types.
+ It is defined in the <cstdlib> header file.	 It is defined in the <cmath> header file.
+ 
+
+How to find the absolute value without the if statement and header in C++?
+There are various methods to find the absolute values without using the if statement and header too.
+
+Let's have a look at some of them! 
+
+Method 1:
+
+#include 
+using namespace std;
+
+int abs(int x)
+{
+    return (x + (x >> 31)) ^ (x >> 31);
+}
+
+int main()
+{
+    int v = -45;
+    cout << abs(v);
+    return 0;
+}
+
+
+ 
+
+Output:
+
+45
+ 
+
+Method 2:
+
+#include 
+using namespace std;
+
+int abs(int v)
+{
+    return v * ((v > 0) - (v < 0));
+}
+
+int main()
+{
+    int v = -45;
+    cout << abs(v);
+    return 0;
+}
+ 
+
+Output:
+
+45
+ 
+
+Method 3:
+
+#include 
+using namespace std;
+
+int abs(int n)
+{
+  return sqrt(n*n);
+}
+
+int main()
+{
+    int v = -45;
+    cout << abs(v);
+    return 0;
+}
+ 
+
+Output:
+
+45
+ 
+
+Method 4:
+
+#include 
+using namespace std;
+
+int abs(int n) { return n > 0 ? n : -n; }
+
+int main()
+{
+    int v;
+    cin >> v;
+    cout << abs(v);
+    return 0;
+}
+ 
+
+Output:
+
+45
+ 
+
+Conclusion
+In short, abs() is defined in the header and it returns the absolute value (magnitude or modulus value) of the argument passed. In C++, the input passed can be of type int, long int, or long long int and the return value has the same data type as the input.
+
+There is a huge advantage of the abs() function when it comes to distance-related problems, where you need the abs() function to calculate the total distance traveled ignoring the direction. 
+
+Congratulations on getting this far! Now give yourself a pat on the back. Good job!
