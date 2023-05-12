@@ -1,0 +1,338 @@
+Article Link (Visit) :https://favtutor.com/blogs/iterate-through-map-cpp
+Author : Anubhav Agrawal 
+Website : https://favtutor.com/
+
+
+Iterate through Map in C++: 6 New Methods (with code)
+ Jan 16, 2023  8 Minutes Read
+Iterate through Map in C++: 6 New Methods (with code)
+In this article, we will learn about the various methods to iterate over the map in C++. Finding the frequency of an element in an array is the most basic operation on a map. Therefore, knowing about the map and the methods for its iteration is very crucial. So, before learning about the methods, let's first understand what a map is.
+
+What is a Map?
+A map is an associative container where each element has a key-value pair. No two elements can have the same key. Map sorts the elements in increasing order by using its own comparator function whether it's an int or a string. It stores the values in the mapped fashion. It is included in the map header file.
+
+Here is a syntax of Map in C++:
+
+map<datatype,datatype> Mymap;
+ 
+
+Example:
+
+map<int, string> test={    {1, "Java",},
+                           {2, "Python",},
+                           {3, "C++",},
+                           {4, "Javascript",},
+                      };
+ 
+
+Now, let's now talk about the methods to iterate over the map in C++.
+
+How to Iterate through Map in C++?
+There are 6 methods to iterate over a C++ map. Some of these are easier but only implemented in the latest versions of the programming language.
+
+Using a Range Based for loop
+Traversing using begin() and end()
+STL Iterator
+std::for_each and lambda function
+Using Range-based for loop (C++11)
+Using range-based for loop with key-values pairs
+Let's learn about each method one by one.
+
+1) Using a Range Based for loop
+In this method, we use the keyword "auto" to iterate through the map. Let's look at an example. We are finding the frequency of each element in an array and printing the map from the beginning :
+
+// Welcome to Favtutor
+// CPP program to traverse a map using range
+// based for loop
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int arr[] = { 1, 1, 2, 1, 1, 3, 4, 3 };
+	int n = sizeof(arr) / sizeof(arr[0]);
+
+	map<int, int> m;
+	for (int i = 0; i < n; i++)
+		m[arr[i]]++;
+
+	cout << "Element Frequency" << endl;
+	for (auto i : m)    // auto keyword 
+		cout << i.first << " " << i.second
+			<< endl;
+
+	return 0;
+}
+ 
+
+Output:
+
+Element  Frequency
+1          4
+2          1
+3          2
+4          1
+ 
+
+Note: In an unordered_map, elements will be in random order!
+
+2) Traversing using begin() and end()
+In this method, we will create an iterator using the same auto keyword and along with that, we will also use the begin() and end() which are the basic functions associated with the map in C++.  In the below example, we are finding the frequency of each element in an array and printing the map from the beginning :
+
+//Welcome to Favtutor
+// CPP program to traverse a map using iterators
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int arr[] = { 1, 1, 2, 1, 1, 3, 4, 3 };
+	int n = sizeof(arr) / sizeof(arr[0]);
+
+	map<int, int> m;
+	for (int i = 0; i < n; i++)
+		m[arr[i]]++;
+
+	cout << " Element Frequency" << endl;
+	for (auto i = m.begin(); i != m.end(); i++)
+		cout << i->first << "	 " << i->second
+			<< endl;
+
+	return 0;
+}
+ 
+
+Output:
+
+Element  Frequency
+1          4
+2          1
+3          2
+4          1
+ 
+
+Note: In an unordered_map, elements will be in random order!
+
+ Here,  m.begin() returns an iterator to the first element in the map m, and m.end() returns an iterator to the theoretical element that follows the last element in the map m.
+
+ 3) STL Iterator
+The C++ STL allows us to create the iterator of std::map and we can initialize it from the beginning of the map and can successfully traverse to the end of it. The below example demonstrates the above:
+
+//Welcome to Favtutor
+#include<iostream>
+#include<map>
+#include<string> 
+#include<iterator> 
+#include<algorithm> 
+
+int main()
+{
+	// Map created
+	std::map<std::string, int> ExampleMap;
+	
+	// elements are inserted into map
+	ExampleMap.insert(std::pair<std::string, int>("Sunday", 1));
+	ExampleMap.insert(std::pair<std::string, int>("Monday", 2));
+	ExampleMap.insert(std::pair<std::string, int>("Tuesday", 3));
+	ExampleMap.insert(std::pair<std::string, int>("Wednesday", 4));
+	ExampleMap.insert(std::pair<std::string, int>("Thursday", 5));
+	ExampleMap.insert(std::pair<std::string, int>("Friday", 6));
+	ExampleMap.insert(std::pair<std::string, int>("Saturday", 7));
+	
+	// map iterator created
+	// iterator pointing to start of map
+	std::map<std::string, int>::iterator it = ExampleMap.begin();
+	
+	// Iterating over the map using Iterator till map end.
+	while (it != ExampleMap.end())
+	{
+		// Accessing the key
+		std::string word = it->first;
+		// Accessing the value
+		int count = it->second;
+		std::cout << word << " :: " << count << std::endl;
+		// iterator incremented to point next item
+		it++;
+	}
+	return 0;
+}
+ 
+
+Output:
+
+Friday :: 6
+Monday :: 2
+Saturday :: 7
+Sunday :: 1
+Thursday :: 5
+Tuesday :: 3
+Wednesday :: 4
+ 
+
+4) std::for_each and lambda function
+In this method we will use the for_each method for traversing the map and the lambda expression will be used as a callback and will receive each map entry. The below example demonstrates the above:
+
+// Welcome to Favtutor
+#include<iostream>
+#include<map> 
+#include<string> 
+#include<iterator> 
+#include<algorithm> 
+
+int main()
+{
+	// Map created
+	std::map<std::string, int> ExampleMap;
+	
+	// elements are inserted into map
+	ExampleMap.insert(std::pair<std::string, int>("Sunday", 1));
+	ExampleMap.insert(std::pair<std::string, int>("Monday", 2));
+	ExampleMap.insert(std::pair<std::string, int>("Tuesday", 3));
+	ExampleMap.insert(std::pair<std::string, int>("Wednesday", 4));
+	ExampleMap.insert(std::pair<std::string, int>("Thursday", 5));
+	ExampleMap.insert(std::pair<std::string, int>("Friday", 6));
+	ExampleMap.insert(std::pair<std::string, int>("Saturday", 7));
+	
+	// map iterator created
+	// iterator pointing to start of map
+	std::map<std::string, int>::iterator it = ExampleMap.begin();
+	
+	// Iterating over the map till map end.
+		std::for_each(ExampleMap.begin(), ExampleMap.end(),
+				[](std::pair<std::string, int> key_value)
+				{
+					// Accessing the key
+					std::string word = key_value.first;
+					// Accessing the value
+					int count = key_value.second;
+					std::cout<<word<<" :: "<<count<<std::endl;
+		});
+	return 0;
+}
+ 
+
+Output:
+
+Friday :: 6
+Monday :: 2
+Saturday :: 7
+Sunday :: 1
+Thursday :: 5
+Tuesday :: 3
+Wednesday :: 4
+ 
+
+5) Using Range-based for loop (C++11)
+In the C++11 version, there is a new way to traverse through the map in C++. This is the most elegant way to iterate over a map in C++. The below example demonstrates the above:
+
+//Welcome to Favtutor
+#include<iostream>
+#include<map> 
+#include<string>
+using namespace std;
+
+int main() {
+    // Initialize a map
+    map<string, string> countryCapitalMap;
+    // Insert different elements in map
+    countryCapitalMap.insert(pair<string, string>("India", "Delhi"));
+    countryCapitalMap.insert(pair<string, string>("Nepal", "Kathmandu"));
+    countryCapitalMap.insert(pair<string, string>("China", "Beijing"));
+    countryCapitalMap.insert(pair<string, string>("France", "Paris"));
+
+   
+    // Iterate using iterator in for loop
+    for (const auto &ele : countryCapitalMap) {
+        cout <<ele.first << ":" << ele.second<<"\n";
+    }
+   
+    return 0;
+}
+ 
+
+Output:
+
+China:Beijing
+France:Paris
+India:Delhi
+Nepal:Kathmandu
+ 
+
+6) Using range-based for loop with key-values pairs
+Here, you can explicitly access the key-value pair in the map. This version is supported from c++17 onwards and provides a more flexible way for iterating over the map. Here we are destructuring into the key and value. The below example demonstrates the above:
+
+//Welcome to Favtutor
+#include<iostream>
+#include<map> 
+#include<string>
+using namespace std;
+
+int main() {
+    // Initialize a map
+    map<string, string> countryCapitalMap;
+    // Insert different elements in map
+    countryCapitalMap.insert(pair<string, string>("India", "Delhi"));
+    countryCapitalMap.insert(pair<string, string>("Nepal", "Kathmandu"));
+    countryCapitalMap.insert(pair<string, string>("China", "Beijing"));
+    countryCapitalMap.insert(pair<string, string>("France", "Paris"));
+
+   
+    // Iterate using iterator in for loop
+    for (const auto& [key, value] : countryCapitalMap) {
+        cout << key << ":" << value << "\n";
+    }
+   
+    return 0;
+}
+ 
+
+Output:
+
+China:Beijing
+France:Paris
+India:Delhi
+Nepal:Kathmandu
+ 
+
+Till now we have discussed the std::map in C++. Now, let's also take an example of unordered_maps as well as we discussed earlier it stores the data in random order rather than sorted.
+
+Iterate through an unordered map in C++
+In this example, we will use a range-based for loop to iterate over the unordered map. 
+
+// Welcome to Favtutor
+// CPP program to traverse a unordered_map using
+// range based for loop
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int arr[] = { 1, 1, 2, 1, 1, 3, 4, 3 };
+	int n = sizeof(arr) / sizeof(arr[0]);
+
+	unordered_map<int, int> m;
+	for (int i = 0; i < n; i++)
+		m[arr[i]]++;
+
+	cout << "Element Frequency" << endl;
+	for (auto i : m)
+		cout << i.first << " " << i.second
+			<< endl;
+
+	return 0;
+}
+ 
+
+Output:
+
+Element  Frequency
+1   4
+2   1
+3   2
+4   1
+ 
+
+Conclusion 
+In this article, we learned about the various methods to iterate through a Map in C++. The map is used almost everywhere whenever you want to store the data in an ordered fashion or to find the frequency of the elements etc. Do you still have some doubts? Get Expert C++ help online.
+
+Congratulations on getting this far! Now give yourself a pat on the back. Good job!
