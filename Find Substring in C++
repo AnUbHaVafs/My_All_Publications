@@ -1,0 +1,317 @@
+Find Substring in C++: Syntax, Program & Applications
+ Dec 19, 2022  6 Minute Read
+Find Substring in C++: Syntax, Program & Applications
+Consider a string s ="PROGRAMMING", then all the continuous parts of any length like "PRO", "GRAM", "RAM", and so on are called the substrings of a string s.
+
+So, to extract these substrings from a specific string we have a pre-defined function called substr() that exists in the header file in C++ for handling all types of string operations like strcat(), append() etc.
+
+In this article, we will go in-depth about extracting substrings from strings, syntax, parameters, applications, and programs in C++ with complete code.
+
+What is a substring in C++?
+A continuous part of a string is known as its sub-string. A string can have many substrings of various lengths. Like in set theory, a set can have multiple subsets, similarly, a string can contain many sub-strings of different lengths.
+
+In C++, substr() is a pre-defined function used to extract a sub-string of a given length from a specific string. To access the substr() function in our C++ program, we need to include a header file called for string handling.
+
+The substr() function takes 2 parameters pos and len as arguments and a newly constructed string object with its value initialized to a copy of a sub-string of this object is returned.
+
+Here, the pos parameter defines the index or location from where we have to start copying the substring elements and len defines the length of that substring or the extent to which we have to copy the elements of a string.
+
+Syntax of substr() function 
+Here is the official syntax for using substr() function in C++:
+
+
+string substr (size_t pos, size_t len) const;
+ 
+Parameters of substr() function
+There are 3 parameters: 
+
+pos: Position/index of the first character to be copied or the location from where we have to originate our substring.
+len: Length of the sub-string we need to extract after the pos location/index.
+size_t: It is an unsigned integral type.
+Return Type
+substr() It returns a string object. It generates a new string with its value initialized to a copy of a sub-string extracted from the original string.
+
+ 
+
+C++ Program of substr() function 
+The following C++ program demonstrates how to find a substring in a string:
+
+
+// Welcome to FavTutor
+// CPP program to illustrate substr()
+#include<string.h>  // header file
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    // String Input
+    string s1 = "FavTutor";
+
+    // Copy two characters of s1 (starting
+    // from position 3 [0-based indexing]).
+    string r = s1.substr(3, 5); // Tutor
+
+    // prints the generated sub-string :
+    cout << "String is: " << r;
+
+    return 0;
+}
+ 
+
+Output: 
+
+
+String is: Tutor
+ 
+
+Important Applications of substr() function
+There are many interesting applications of it in the coding world:
+
+01) Extract a sub-string after a given character
+In this, we have been given a specific character that will exist in our original string, we have to generate a sub-string after that character only.
+
+Example: Extract everything after the “:” in the string “Topic:sub-string“. The following is the C++ program for the above: 
+
+
+// Welcome to FavTutor
+// CPP program to illustrate substr()
+#include<string.h>  // header file
+#include<iostream> 
+using namespace std;
+
+int main()
+{
+    // Input string
+    string s = "Topic:sub-string";
+
+    // Finding position of ':' using find()
+    int pos = s.find(":");
+
+    // Copy substring after pos index/location
+    string sub = s.substr(pos + 1);
+
+    // prints the generated sub-string :
+    cout << "String is: " << sub;
+
+    return 0;
+}
+ 
+
+Output: 
+
+
+String is: sub-string
+ 
+
+02) Extract a sub-string before a given character
+In this, contrary to the above, we have been given a specific character that will exist in our original string, we have to generate a sub-string before that character only.
+
+Example: Extract everything before the “:” in the string “Topic:sub-string“.  The following is the program: 
+
+// Welcome to FavTutor
+// CPP program to illustrate substr()
+#include<string.h>  // header file
+#include<iostream> 
+using namespace std;
+
+int main()
+{
+    // Input string
+    string s = "Topic:sub-string";
+
+    // Finding position of ':' using find()
+    int pos = s.find(":");
+
+    // Copy substring before pos index/location
+    string sub = s.substr(0,pos);
+
+    // prints the generated sub-string :
+    cout << "String is: " << sub;
+
+    return 0;
+}
+ 
+
+ Output: 
+
+String is: Topic
+ 
+
+03) Find all the sub-strings from a given string 
+In this, we have to extract all the possible sub-strings from a given sub-string. The following is the C++ program for the above :
+
+
+// Welcome to FavTutor
+// C++ program to demosntrate all possible
+// substrings of a given string
+#include <bits/stdc++.h>
+using namespace std;
+
+// Function to print all sub strings
+void subStrings(string s, int n)
+{
+    // In outer loop, choose starting point
+    // and in inner loop, lengths of different strings for
+    // a given starting point will be used.
+    for (int i = 0; i < n; i++)
+        for (int len = 1; len <= n - i; len++)
+            cout << s.substr(i, len) << endl;
+}
+
+// Driver program to test above function
+int main()
+{
+    string s = "Fav";
+    subStrings(s, s.length()); // calling function
+    return 0;
+}
+ 
+
+Output: 
+
+
+F
+Fa
+Fav
+a
+av
+v
+ 
+
+04) Sum of all the sub-strings as numbers 
+An integer will be given in the string format and we need to find the sum of all the possible sub-strings that can be extracted from the given string. Here is the code:
+
+
+// Welcome to FavTutor
+// C++ program to print sum of all substring of
+// a number represented as a string
+#include <bits/stdc++.h>
+using namespace std;
+
+// convert character digit to integer digit
+int toDigit(char ch)
+{
+    return (ch - '0');
+}
+
+// Returns sum of all substring of num
+int sumOfSubstrings(string num)
+{
+    int n = num.length();
+
+    // allocate memory equal to length of string
+    int sumofdigit[n];
+
+    // initializing first value with first digit
+    sumofdigit[0] = toDigit(num[0]);
+    int res = sumofdigit[0];
+
+    // loop over all digits of string
+    for (int i = 1; i < n; i++)
+    {
+        int numi = toDigit(num[i]);
+
+        // update each sumofdigit from previous value
+        sumofdigit[i] = (i + 1) * numi + 10 * sumofdigit[i - 1];
+
+        // add current value to the result
+        res += sumofdigit[i];
+    }
+
+    return res;
+}
+
+// Driver code to test above methods
+int main()
+{
+    string num = "123";
+    cout << sumOfSubstrings(num) << endl;
+    return 0;
+}
+ 
+
+Output:
+
+
+164
+ 
+05) Pattern Matching using sub-string 
+In this, we need to find whether the given string is present or not in the original string and if present then at what location/index. Here is the code:
+
+
+// Welcome to FavTutor
+#include<iostream> 
+#include<cstdlib>  // header file
+
+using namespace std;
+
+int main()
+
+{
+
+    int i, j, temp;
+
+    char str[100] = {"Welcome you all to the FavTutor"};
+
+    char substr[20] = {"Welcome"};
+
+    for (i = 0; str[i] != '\0'; i++)
+
+    {
+
+        j = 0;
+
+        if (str[i] == substr[j])
+
+        {
+
+            temp = i + 1;
+
+            while (str[i] == substr[j])
+
+            {
+
+                i++;
+
+                j++;
+            }
+
+            if (substr[j] == '\0')
+
+            {
+
+                cout << "The substring is present in given string at position " << temp << "\n";
+
+                exit(0);
+            }
+
+            else
+
+            {
+
+                i = temp;
+
+                temp = 0;
+            }
+        }
+    }
+
+    if (temp == 0)
+
+        cout << "The substring is not present in given string\n";
+
+    return 0;
+}
+ 
+
+Output:
+
+
+The substring is present in given string at position 1
+ 
+
+Takeaways
+So, now you know everything about the substring function is used to extract all the possible sub-strings of various lengths from a given string. We also provided a program on how to find substring in a string in C++.
+
+Congratulations on getting this far! Now give yourself a pat on the back. Good job!
