@@ -1,0 +1,299 @@
+Article Link (Visit) : https://favtutor.com/blogs/java-optional-parameters
+Author : Anubhav Agrawal 
+Website : https://favtutor.com/
+
+
+Optional Parameters in Java: 4 Different Methods (with code)
+ Dec 21, 2022  8 Minutes Read
+Optional Parameters in Java: 4 Different Methods (with code)
+Whenever we design a method in a Java class, a parameter can be optional for the execution of that method. First, we specify the required parameters and then we define the optional parameters.
+
+In this article, we will learn about the optional parameters in java and implementation using different methods with syntax and example:
+
+Java Optional Parameters
+In some scenarios, while defining the method, we don't know the exact number of parameters that the user can provide to the function. In such cases, we opt for java optional parameters which take parameters as optional.
+
+Optional Parameters mean even if a user is not providing the arguments, the function will get executed without any error. In the following sections, we will discuss multiple ways to implement optional parameters in java.
+
+Before that let's look at the below if else code:
+
+
+String email = null;
+
+if (person.getEmail() != null){
+   email = email.toLowerCase();
+}
+else{
+   // default behaviour
+}
+ 
+
+In the above example, we use an if-else block to check whether the parameter passed by the user is null or not, if it is not null then we will implement that method else we will do some default operations.
+
+In this case, we have only 1 parameter to encounter but think about the code in which we have numerous methods each with many parameters that can be optional or not. Can we use it else for all of them?
+
+Obviously, the answer is NO! So, java optional parameters also avoid this code smell.
+
+04 Methods to Implement Java Optional Parameters
+Let's now look at 4 ways on how do you add optional parameters in Java.
+
+01) Overloading Method
+In the Overloading method, method, we will define the same method again and again but each one with a different number of optional parameters.
+
+First, we define the method with the required parameters and then we redefine the same method but with 1 optional parameter and then redefine it with 2 optional parameters, and so on...
+
+When working with optional parameters, method overloading is one of the more obvious and common approaches available.
+
+The basic syntax of the method overloading to have Java optional parameters is given below:
+
+
+// Welcome to FavTutor
+
+// required parameters
+Function1(parameter){
+	// statements of function
+}
+
+// optional parameters
+Function1(parameter1, parameter2){
+	// statements of function
+}
+Function1(parameter1, parameter2, parameter3){
+	// statements of function
+}
+ 
+
+ An example of this method overloading is shown below:
+
+
+// Welcome to FavTutor
+// java main class
+public class Main{
+	// java main method
+	public static void main(String arg[]){
+		// calling the function with required parameters
+		System.out.println("With two arguments: "+Sum(100, 5));
+		// calling the function with the java optional parameters
+		System.out.println("With three arguments: "+Sum(100, 5,5));
+		System.out.println("With four arguments: "+Sum(100, 5,5,5));
+	}
+	// function with requred parameters
+	public static Integer Sum(Integer num1, Integer num2){
+		// return the sum of the numbers
+		return num1+num2;
+	}
+	// java overiding method to create optional parameters
+	public static Integer Sum(Integer num1, Integer num2, Integer num3){
+		// return the sum
+		return num1+num2+num3;
+	}
+	// java overiding method to create optional parameters
+	public static Integer Sum(Integer num1, Integer num2, Integer num3, Integer num4){
+		// return the sum
+		return num1+num2+num3+num4;
+	}
+}
+ 
+
+Output:
+
+
+With two arguments: 105
+With three arguments: 110
+With four arguments: 115
+Note that in the above program we are able to provide the two, three, and four arguments to the same method with any error. 
+
+ 
+
+02) Optional container object
+In Java, optional is a container object that can return a non-null value. If a value is not null, then the isPresent() method will return true, and as a result, the get()  method will return its value. In case we are not sure about its value (can be null or not null), we use the ofNullable() method of this class.
+
+It returns an empty Optional object and does not throw an exception. Now, let's look at the basic syntax of creating an optional container object below.
+
+Given below is the syntax of how we can create an optional container object in java:
+
+
+// Welcome to FavTutor
+Sum(paramter1, parameter2){
+	Optional ln = Optional.ofNullable(parameter2);
+	// function statements
+}
+ 
+
+Here, we provided the second parameter as an optional parameter.
+
+Let's take a look at the below example in which we first imported the Optional class as we will be using it in our program and then implemented an optional container object to have java optional parameters.
+
+
+// Welcome to FavTutor
+// importing optional class
+import java.util.Optional;
+// java main class
+public class Main{
+		// java main method
+ 		public static void main(String args[]){
+			// calling function with all arguments
+			System.out.println("Calling the function with all parameters!!");
+        	Info("Anubhav","Agrawal",19);
+			// calling function without optional parameters
+			System.out.println("Calling the function without the optional parameter!!");
+			Info("Anubhav",null , 19);
+    }
+	// user defined method of type Info
+    private static void Info(String fname, String lName, int age){
+		// creating optional object
+		// and making our argument lastname as optional
+        Optional lname = Optional.ofNullable(lName);
+		// checking if the optional parameter is provided or not
+        String optionalParameter = lname.isPresent() ? lname.get() : "Last name not given!";
+		// printing out the information
+        System.out.println("First Name : "+fname + "\nLast Name : "+optionalParameter +"\nThe age : "+age);
+    }
+}
+ 
+
+Output:
+
+
+Calling the function with all parameters!!
+First Name : Anubhav
+Last Name : Agrawal
+The age : 19
+Calling the function without the optional parameter!!
+First Name : Anubhav
+Last Name : Last name not given!
+The age : 19
+ 
+
+Note that in the above program we have not provided the last name in the second call still we are able to run the program without any error with the output of the Last name not given!
+
+03) Built Pattern to have Java optional parameters
+This is a very interesting way to design patterns to create complex objects. The main purpose is to separate the construction of an object from its representation! The builder pattern is yet another approach to handling Java optional parameters! Now let's see how it works.
+
+Given below is a practical example of creating patterns to have optional java parameters. First, we have a public static nested class inside our Main class. StudentBuilder is our builder class. Then we will define all the fields of the outer class of the StudentBuilder.
+
+After that, we will create a public constructor for the StudentBuilder with all the required properties as parameters and then we will also create methods for optional parameters. An example is given below:
+
+
+// Welcome to FavTutor
+public class Main {
+	// Required parameters
+	private String fname;
+    private String lname;
+    // Optional properties
+	private String email; 
+    private String address; 
+    private String phone;
+	// constructor
+	private Main() {
+	}
+	// creating studentBuilder class
+	public static class StudentBuilder {
+		// instance variables 
+		private String firstname;
+		private String lastname;
+		private String email;
+		private String address;
+		private String phone;
+		// constuctor of StudentBuilder class
+		public StudentBuilder(String firstname,String lastname){ 
+			this.firstname = firstname;
+			this.lastname  = lastname;
+		}
+		// constructor for email
+		public StudentBuilder withEmail(String email) {
+			this.email = email;
+			return this;
+		}
+		// constructor for email
+		public StudentBuilder withAddress(String address) {
+			this.address = address;
+			return this;
+		}
+		// constuctor for phone number
+		public StudentBuilder withPhone(String phone) {
+			this.phone = phone;
+			return this;
+		}
+		public Main build() {
+			// creating new object
+			Main student = new Main();
+			student.fname = this.firstname;
+			student.lname = this.lastname;
+			student.email = this.email;
+			student.address = this.address;
+			student.phone  = this.phone;
+			// return the student object
+			return student;
+		}
+	}
+	// java main method
+	public static void main(String[] args) { 
+		// First Student object, with all parameters including optional parameters
+		Main student1 = new  Main.StudentBuilder("Anubhav","Agrawal")
+									.withEmail("[email protected]")
+									.withAddress("MMMUT")
+									.withPhone("123-456786")
+									.build();
+		// Second Student object with required parameters!
+		Main student2 = new  Main.StudentBuilder("Anubhav","Agrawal")
+									.build();
+	}
+}
+ 
+
+04) Varargs (variable length arguments)
+Varargs means variable-length arguments which allow the method to accept 0 or multiple parameters. As this method creates maintenance problems therefore this method is usually not suggested.
+
+It could be handled in two ways. One uses an overloaded method(one for each) and another is to put the arguments into an array and then pass this array to the method. Both methods are error-prone and require further more code. Let's first see its basic syntax of it.
+
+Three dots are used to declare varargs in Java. The syntax of which is shown below :
+
+
+// Welcome to FavTutor
+public static void FunctionName(int ... a) {
+   // method statements
+} 
+ 
+
+Here we are implicitly declaring an array a of type int and telling the compiler that FunctionName() can be called with 0 or more arguments.
+
+Let's take a look at the example below:
+
+
+// Welcome to FavTutor
+// Java main class
+public class Main{
+	// java main method
+    public static void main (String args[]){
+		// calling the Varargs function without any arguments
+        Varargs.display();
+		// calling the Varargs function with arguments
+        Varargs.display("welcome", "to", "golinuxcloud");
+    }
+}
+// user defined class
+class Varargs {
+	// display method
+     static void display(String... args) {
+		//  storing the arguments in array
+        String array[] = args;
+		// printing the arguments
+        System.out.println("The number of arguments provided were:  "+array.length);
+    }
+}
+ 
+
+Output:
+
+
+The number of arguments provided were: 0
+The number of arguments provided were: 3
+Note that, first we haven't provided any arguments, as a result, we get 0 and then we provided three arguments, as a result, we get 3 in the output as shown above.
+
+ 
+
+Conclusion 
+In some scenarios, while creating user-defined functions we don't know the exact number of arguments that the user will provide to our function and this is where we need the java optional parameters. From this article, we may now know how to declare and implement optional parameters in java with various methods.
+
+Congratulations on getting this far! Now give yourself a pat on the back. Good job!
