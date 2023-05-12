@@ -2,7 +2,7 @@ Article Link (Visit) : https://favtutor.com/blogs/lambda-expressions-java
 Author : Anubhav Agrawal
 Website : https://favtutor.com/
 
-Lambda Expression in Java 8: Example, Advantages & Code
+Lambda Expression in Java: Example, Advantages & Code
  Dec 12, 2022  7 Minutes Read
 Lambda Expression in Java 8: Example, Advantages & Code
 Lambda expressions are similar to methods and are a short block of code that takes in parameters and returns a value. They are added in Java 8. In this article, we will learn about lambda expressions in detail covering all the What, Why, Where, When, When Not! Just to have an idea first:
