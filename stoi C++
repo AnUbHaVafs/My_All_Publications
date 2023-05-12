@@ -1,0 +1,245 @@
+Article Link (Visit) : https://favtutor.com/blogs/stoi-cpp
+Author : Anubhav Agrawal 
+Website : https://favtutor.com
+
+What is stoi function in C++? (Syntax, Example & Use Cases)
+ Dec 20, 2022  5 Minutes Read
+What is stoi function in C++? (Syntax, Example & Use Cases)
+You must be curious about which real-life circumstances as a C++ programmer you need to convert strings to numeric values. So, suppose a plethora of users are providing their house addresses as inputs and you want to use only the address number somewhere further in your program.
+
+A function called stoi() can separate those house numbers from the addresses and make our job easy. In this article, we will go in-depth into stoi() function in C++, how it works, its library, and return type with complete source code.
+
+Let's begin step by step!
+
+What Is stoi() in C++?
+The stoi() function allows us to convert a string into an integer and it's a standard library function. STOI stands for "string to integer". Also, stoi() functions provide us with some other functionalities like removing trailing letters from the string, etc.
+
+It removes any whitespace characters (which can be identified by calling std::isspace) till the first non-whitespace character/element is found and then takes as many characters as possible to form a valid base-n (where n=base) integer number representation to convert them into an integer.
+
+The valid integer value consists of the following parts:
+
+plus or minus sign (optional) 
+prefix (0) indicating octal base (applies only when the base is 8 or 0) (optional) 
+prefix (0x or 0X) indicating hexadecimal base (applies only when the base is 16 or 0) (optional) 
+a sequence of digits
+Syntax & Parameters
+Let's look at the basic syntax for using this function:
+
+
+stoi(string, position, int base) 
+ 
+
+There are 3 main parameters here:
+
+string: defines a string that needs to be converted.
+position: starting position of the number within the string.
+base: the number base in which you want to read the specified string.
+Note: If the value of the base is 0, the numeric base is auto-detected: if the prefix of the string is 0, the base is octal (base = 8), and if the prefix is 0x or 0X, the base is hexadecimal (base = 16), otherwise the base is decimal (base = 10).
+
+Working of stoi() function
+Given below is the C++ program of working of stoi() function with one simple example : 
+
+
+// Welcome to FavTutor
+#include<iostream>
+#include<string> 
+
+using namespace std;
+
+int main()
+{
+    string str1 = "521";
+    int x = stoi(str1); // stoi() function will convert the str1 into integer value
+    cout << "stoi(\"" << str1 << "\") : " << x << '\n';
+}
+ 
+
+Output:
+
+
+stoi("521") : 521
+ 
+
+Note: This stoi() function is relatively new, it came in the latest revision (C++11) in 2011. So, if you’re using an older version of C++ that’s locked to pre-C++11 (e.g., C++03), the stoi() function will not work instead it will throws an exception.
+
+For that, we have the stringstream class defined in the C++ standard library. An example of it is given below :
+
+
+// Welcome to FavTutor
+#include<iostream>
+#include<sstream> // stringstream header file
+
+using namespace std;
+
+int main()
+{
+    string str1 = "541";
+    stringstream container(str1); // container object
+    int x;
+    container >> x;  // slide the string value stored in the object container to replace the integer previously stored in x.
+    cout << "Value of x: " << x;
+}
+ 
+
+Output:
+
+
+Value of x: 541
+ 
+
+Various Use Cases of stoi() function
+The stoi() function provides the functionality of handling + or – signs and zeros at the front of a number. Additionally, can handle hexadecimal prefixes (0x or 0X) and removes whitespace characters. stoi() does not even care about the characters after the number.
+
+Following are the various use cases of stoi() function :
+
+
+// Welcome to FavTutor
+#include<iostream> 
+#include<sstream> // stringstream class
+
+using namespace std;
+
+int main()
+{
+    string s1 = "-541";  // minus sign will be preserved
+    string s2 = "541favtutor";  // it will ignore the characters after the number value
+    string s3 = "000000000000541"; // it will not consider the preceding zeroes
+    string s4 = "3.14159";  // it will only take the integer value
+
+    int num1 = stoi(s1);
+    int num2 = stoi(s2);
+    int num3 = stoi(s3);
+    int num4 = stoi(s4);
+
+    cout << "num1: " << num1 << endl;
+    cout << "num2: " << num2 << endl;
+    cout << "num3: " << num3 << endl;
+    cout << "num4: " << num4 << endl;
+}
+ 
+
+Output:
+
+
+num1: -541
+num2: 541
+num3: 541
+num4: 3
+ 
+
+Exceptions
+There are two exceptions:
+
+std::invalid_argument if no conversion could be performed
+std::out_of_range if the converted value would fall out of the range of the result type.
+ Following is the C++ program to show how an exception can occur due to the range value:
+
+
+// Welcome to FavTutor
+#include<iostream>
+#include<sstream> 
+
+using namespace std;
+
+int main()
+{
+    string s1 = "The answer is 7"; // characters before numberic value will results in error
+
+    int num1 = stoi(s1);
+
+    cout << "num1: " << num1;
+}
+ 
+
+Output:
+
+
+terminate called after throwing an instance of 'std::invalid_argument'
+  what():  stoi
+ 
+
+Converting a Different-Base (Non-Base 10) String Into an Integer
+ Following is the C++ program to show the working of the stoi() function with base-2, base-8 and base-16 strings as input:
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    // base-16 string
+    string str = "FF";
+    unsigned long num = stoi(str, nullptr, 16);
+    cout << "The base ten equivalent of FF is " << num << "\n";
+
+    // base-2 string
+    string bin_string = "10101010";
+    int number = 0;
+    number = stoi(bin_string, nullptr, 2);
+    cout << "Original binary string: " << bin_string << endl;
+    cout << "Equivalent integer: " << number << endl;
+
+    // out of the range : throws error
+    string str1 = "12345678901";
+    cout << stoi(str1) << endl;
+}
+ 
+
+Output:
+
+
+The base ten equivalent of FF is 255
+Original binary string: 10101010
+Equivalent integer: 170
+terminate called after throwing an instance of 'std::out_of_range'
+  what():  stoi
+ 
+
+Conclusion
+In this article, we went into detail about stoi in C++, its syntax, parameters, examples, use cases, and exceptions. You can also use the following functions since they have a similar behaviour to the stoi() function:
+
+ 
+
+stoul
+
+stoull
+
+ function which converts a string to an unsigned integer.
+stof
+
+stod
+
+stold
+
+ function which converts a string to a floating point value.
+strtol
+
+strtoll
+
+ function which converts a byte string to an integer value.
+
+strtoul
+
+strtoull
+
+ function which converts a byte string to an unsigned integer value.
+
+strtoimax
+
+strtoumax
+
+ function which converts a byte string to std::intmax_t or std::uintmax_t.
+from chars	 function which converts a character sequence to an integer or floating-point value
+atoi
+
+atol
+
+atoll
+
+ function which converts a byte string to an integer value.
+
+to_string	 function which converts an integral or floating point value to string.
+to_wstring	 function which converts an integral or floating point value to wstring.
+ 
+
+Congratulations on getting this far! Now give yourself a pat on the back. Good job!
