@@ -1,0 +1,193 @@
+Article Link (Visit) : https://favtutor.com/blogs/lambda-expressions-java 
+Author : Anubhav Agrawal 
+Website : https://favtutor.com/
+
+How to Throw an Exception in Java (with Examples)
+ Dec 26, 2022  6 Minute Read
+How to Throw an Exception in Java (with Examples)
+In this article, we will learn about the throw keyword in Java in detail for exception Handling with a set of examples. But first, we need to understand what are exceptions in java.
+
+Let's Begin!
+
+What are Exceptions in Java?
+In Java, there are 2 types of exceptions:
+
+Unchecked Exceptions:
+These exceptions are checked at the run-time, not at the compile-time. These exceptions include: 
+
+ArithmeticException, NullPointerException, ArrayIndexOutOfBoundsException exceptions under Error class, etc.
+Checked Exceptions:
+These exceptions are checked at the compile time. These exceptions include: 
+
+IOException, InterruptedException, etc.
+Note: Unchecked exceptions occur due to programming errors so generally, we don't handle them instead it's a good practice to correct them.
+
+Now let's see how to handle checked exceptions in Java in detail!
+
+Java throw keyword
+The throw keyword in Java is used to throw an exception explicitly from a method or any block of code.  When an exception is thrown, the flow of program execution transfers from the try block to the catch block. An exception can be either checked or unchecked. 
+
+Additionally, the throw keyword is majorly used to throw custom exceptions. We use the throw keyword within a method.
+
+Syntax 
+The syntax for using the throw keyword to throw exceptions is:
+
+throw Instance
+ 
+
+Here, the exception i.e, Instance must be of type Throwable or a subclass of Throwable. For example:
+
+throw throwableObject;
+ 
+
+A throwable object is an instance of the class Throwable or a subclass of the Throwable class. The throw statement is used together with an exception type which is often used together with a custom method.
+
+Note: Unlike C++, data types such as int, char, floats, or non-throwable classes cannot be used as exceptions.
+
+When the throw statement is executed, the flow of execution of the program stops immediately and the nearest enclosing try block is checked to see if it has a catch statement that matches the type of exception.
+
+If that catch handles the same type of exception then, control is transferred to that statement otherwise next enclosing try block is checked, and so on. If no matching catch is found then the default exception handler will halt the program.
+
+Example 01) Throwing Unchecked Exception
+In this example, we will throw an unchecked exception if the age is below 18:
+
+// Welcome To FavTutor
+public class Main {
+  static void checkAge(int age) { 
+    if (age < 18) {
+      throw new ArithmeticException("Access denied - You must be at least 18 years old."); 
+    } else {
+      System.out.println("Access granted - You are old enough!"); 
+    }
+ } 
+ 
+ public static void main(String[] args) { 
+   checkAge(15); 
+ } 
+}
+ 
+
+Output :
+
+Exception in thread "main" java.lang.ArithmeticException: Access denied - You must be at least 18 years old.
+        at Main.checkAge(Main.java:4)
+        at Main.main(Main.java:12)
+ 
+
+In this example, we are explicitly throwing an ArithmeticException.
+
+ Note: ArithmeticException is an unchecked exception. It's usually not necessary to handle unchecked exceptions.
+
+Example 02) Throwing Unchecked Exception
+In this example, we are again throwing the unchecked exception as given below:
+
+// Welcome To FavTutor
+// Java program that demonstrates the use of throw
+class ThrowExcep
+{
+	static void fun()
+	{
+		try
+		{
+			throw new NullPointerException("demo");
+		}
+		catch(NullPointerException e)
+		{
+			System.out.println("Caught inside fun().");
+			throw e; // rethrowing the exception
+		}
+	}
+
+	public static void main(String args[])
+	{
+		try
+		{
+			fun();
+		}
+		catch(NullPointerException e)
+		{
+			System.out.println("Caught in main.");
+		}
+	}
+}
+ 
+
+Output:
+
+Caught inside fun().
+Caught in main.
+ 
+
+Example 03) Throwing Unchecked Exception
+Another example showing the use of the throw keyword:
+
+// Java program that demonstrates the use of throw
+// Welcome To FavTutor
+class Test
+{
+	public static void main(String[] args)
+	{
+		System.out.println(1/0);
+	}
+}
+ 
+
+Output :
+
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+ 
+
+Example 04) Throwing Checked Exception
+In this example, we will throw a checked exception named IOException with the message we passed to its constructor :
+
+// Welcome To FavTutor
+import java.io.*;
+class Main {
+  public static void findFile() throws IOException {
+    throw new IOException("File not found");
+  }
+
+  public static void main(String[] args) {
+    try {
+      findFile();
+      System.out.println("Rest of code in try block");
+    } catch (IOException e) {
+      System.out.println(e.getMessage());
+    }
+  }
+}
+ 
+
+Output:
+
+File not found
+ 
+
+The findFile() method throws an IOException with the message we passed to its constructor. We are specifying it in the throws clause because it is the checked exception.
+
+The methods that call this findFile() method need to either handle this exception or specify it using the throws keyword themselves.
+
+We have handled this exception in the main() method. The flow of program execution transfers from the try block to the catch block when an exception is thrown. So, the rest of the code in the try block is skipped and statements in the catch block are executed.
+
+throw and throws in Java
+In exception handling, we also use the throws keyword. Some of the differences between throw and throws are given below:
+
+throw	throws
+Used to throw an exception for a method	Used to indicate what exception type may be thrown by a method
+Cannot throw multiple exceptions	Can declare multiple exceptions
+Syntax:
+throw is followed by an object (new type)
+used inside the method
+Syntax:
+throws is followed by a class
+and used with the method signature
+ 
+
+Conclusion
+In this article, we learned in great detail about the throw keyword in Java and how to throw exceptions using them. Using throw while exception handling increases the quality of our code. Some of the crucial points to keep in mind about the throw keyword are :
+
+used to throw custom exceptions.
+We use the throw keyword within a method.
+The instance must be of type Throwable or a subclass of Throwable. 
+The throw statement is used together with an exception type which is often used together with a custom method.
+Congratulations on getting this far! Now give yourself a pat on the back. Good job!
